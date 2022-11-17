@@ -1,0 +1,21 @@
+services:
+  neovim:
+    image: mhernandezve/neovim
+    build:
+      context: development 
+      dockerfile: ./Dockerfile
+      args:
+        USER_ID: mike
+        GROUP_ID: mike 
+    ports:
+      - "443:8043"
+    networks:
+      - front-tier
+    volumes:
+        - ./:/app
+
+    hostname: neovim 
+    working_dir: /app
+ 
+networks:
+  front-tier: {}
